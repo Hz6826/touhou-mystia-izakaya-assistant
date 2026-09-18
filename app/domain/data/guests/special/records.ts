@@ -3406,7 +3406,7 @@ export const SPECIAL_GUEST_LIST = [
 			'妖精们每天的生活想必会很有趣吧？如果从责任和义务这些角度来想，大酱她相比其他妖精，在这方面考虑得可能更多一些，但恰好处在既不至于成为负累，又不会变成笨蛋的平衡点上呢。真是让鸟脑袋都羡慕的生活态度啊。',
 		],
 		dlc: 9,
-		maps: ['ScarletMansion', 'DLC1_YoukaiMountain', 'DLC4_GardenOfTheSun'],
+		maps: ['ScarletMansion', 'DLC4_GardenOfTheSun'],
 		price: [300, 500],
 		enduranceLimit: 1.4,
 		positiveTags: [7, 17, 21, 28, 31],
@@ -3488,11 +3488,7 @@ export const SPECIAL_GUEST_LIST = [
 			// ],
 		},
 		beverageTagMapping: { 2: '最烈的酒' },
-		positiveTagMapping: {
-			5: '最珍贵的料理',
-			13: '外国风味',
-			28: '比雾之湖大一点',
-		},
+		positiveTagMapping: { 5: '最珍贵的料理', 13: '外国风味' },
 		collection: false,
 	},
 	{
@@ -3620,11 +3616,7 @@ export const SPECIAL_GUEST_LIST = [
 		},
 		spellCards: {},
 		beverageTagMapping: { 17: '以前的时光' },
-		positiveTagMapping: {
-			7: '没有味道',
-			21: '清风流过的感觉',
-			28: '比雾之湖大一点',
-		},
+		positiveTagMapping: { 5: '外界来的高僧', 29: '魔界的童话' },
 		collection: false,
 	},
 	{
@@ -3661,7 +3653,11 @@ export const SPECIAL_GUEST_LIST = [
 		},
 		spellCards: {},
 		beverageTagMapping: { 4: '暖暖身子', 6: '陈酿' },
-		positiveTagMapping: { 23: '踹不动树', 25: '自古逢秋悲寂寥' },
+		positiveTagMapping: {
+			[-2]: '牧场的开销',
+			23: '踹不动树',
+			25: '自古逢秋悲寂寥',
+		},
 		collection: false,
 	},
 	{
@@ -3704,12 +3700,12 @@ export const SPECIAL_GUEST_LIST = [
 		id: 10002,
 		name: '八云蓝',
 		description: [
-			'操控式神的式神妖怪，似乎是橙的监护人，是整个八云邸的管家。明明是妖力很强的妖怪，却出人意料的好脾气，不管什么时候都是笑眯眯的。',
-			'总是会时不时的提起自己的数学水平，可惜完全没办法听明白……有着鲜为人知的过去，还和那个饕餮尤魔有联系？明明是性格天差地别的两个人。不知道能不能找她请教关于地狱料理的事情呢。',
+			'操控式神的式神妖怪，似乎是橙的监护人，是整个八云邸的管家。明明是妖力很强的妖怪，却出人意料地好脾气，不管什么时候都是笑眯眯的。',
+			'总是会时不时地提起自己的数学水平，可惜完全没办法听明白……有着鲜为人知的过去，还和那个饕餮尤魔有联系？明明是性格天差地别的两个人。不知道能不能找她请教关于地狱料理的事情呢。',
 			'原来蓝小姐是从血池地狱来的啊，该说不愧是大妖怪吗？这么说来，蓝小姐之前要照顾饕餮，现在要照顾橙，照顾紫小姐，还要帮紫小姐维护幻想乡的和平，看望灵梦小姐，真希望她能不这么辛苦，以后她来的时候多给她做些好吃的吧。',
 		],
 		dlc: 9,
-		maps: ['HumanVillage', 'HakureiShrine', 'DLC2_FormerHell'],
+		maps: ['HakureiShrine', 'HumanVillage', 'DLC2_FormerHell'],
 		price: [600, 1200],
 		enduranceLimit: 1.4,
 		positiveTags: [-1, 4, 5, 6, 10, 12, 23, 27],
@@ -3733,8 +3729,19 @@ export const SPECIAL_GUEST_LIST = [
 			seenRepell: '紫大人为什么要把希望寄托在这里呢……',
 		},
 		spellCards: {},
-		beverageTagMapping: { 1: '头脑发昏', 2: '浓烈的酒', 19: '些许疲惫' },
-		positiveTagMapping: { [-1]: '各打包一份', 23: '真是累人' },
+		beverageTagMapping: {
+			1: '头脑发昏',
+			2: '浓烈的酒',
+			4: '带回家给橙喝',
+			19: '些许疲惫',
+		},
+		positiveTagMapping: {
+			[-1]: '各打包一份',
+			6: '换点别的炸货',
+			10: '怕水湿了尾巴',
+			23: '真是累人',
+			27: '算得出三途川',
+		},
 		collection: false,
 	},
 	{
@@ -3774,7 +3781,12 @@ export const SPECIAL_GUEST_LIST = [
 		},
 		spellCards: {},
 		beverageTagMapping: { 11: '讲究这么多', 16: '“唰”', 18: '现今的饮料' },
-		positiveTagMapping: { [-1]: '丰盛的大餐', 31: '我爱吃的糕点' },
+		positiveTagMapping: {
+			[-1]: '丰盛的大餐',
+			16: '鲜牛奶变聪明',
+			22: '趁热全吃完',
+			31: '我爱吃的糕点',
+		},
 		collection: false,
 	},
 	{
@@ -3815,7 +3827,11 @@ export const SPECIAL_GUEST_LIST = [
 		},
 		spellCards: {},
 		beverageTagMapping: { [-1]: '反应会下降', 17: '一点点怀念' },
-		positiveTagMapping: { 28: '三分饱' },
+		positiveTagMapping: {
+			2: '鸽子爱吃玉米',
+			21: '刺骨的寒冷',
+			28: '三分饱',
+		},
 		collection: false,
 	},
 ] as const satisfies ISpecialGuest[];
