@@ -66,11 +66,7 @@ interface IUseSpecialGuestPlanRecommendationsParams {
 }
 
 export type TSpecialGuestPlanRecommendationStatus =
-	| 'complete'
-	| 'error'
-	| 'idle'
-	| 'partial'
-	| 'pending';
+	'complete' | 'error' | 'idle' | 'partial' | 'pending';
 
 export function useSpecialGuestPlanRecommendations({
 	hiddenBeverages,

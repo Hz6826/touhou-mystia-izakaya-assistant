@@ -1,8 +1,7 @@
 import { type DBSchema } from 'idb';
 
 export type TRecommendationCacheResultStoreName =
-	| 'specialGuestPlanResults'
-	| 'suggestedMealCardResults';
+	'specialGuestPlanResults' | 'suggestedMealCardResults';
 
 export interface IRecommendationCacheRecord {
 	createdAt: number;

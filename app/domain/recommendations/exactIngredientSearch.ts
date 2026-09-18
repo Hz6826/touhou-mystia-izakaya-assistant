@@ -431,8 +431,7 @@ function hasMaskIndex(mask: ReadonlyArray<number>, index: number) {
 export function getExactIngredientStateTags(
 	table: Pick<IExactIngredientStateTable, 'tags'>,
 	state:
-		| Pick<IExactIngredientState, 'orderedTagIndexes' | 'tagMask'>
-		| undefined
+		Pick<IExactIngredientState, 'orderedTagIndexes' | 'tagMask'> | undefined
 ) {
 	if (state === undefined) {
 		return [];

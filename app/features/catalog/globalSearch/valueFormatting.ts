@@ -29,12 +29,7 @@ import type { TGlobalSearchFieldType } from '@/features/globalSearch/contracts';
 import { checkIsRecord } from '@/shared/utilities/objects/checkIsRecord';
 
 type TFoodSourceMethodKey =
-	| 'buy'
-	| 'collect'
-	| 'fishing'
-	| 'fishingAdvanced'
-	| 'prayer'
-	| 'task';
+	'buy' | 'collect' | 'fishing' | 'fishingAdvanced' | 'prayer' | 'task';
 
 function normalizePrimitive(value: unknown): string[] {
 	if (value === false) {

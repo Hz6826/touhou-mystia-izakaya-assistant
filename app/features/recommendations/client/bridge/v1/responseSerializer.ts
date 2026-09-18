@@ -1,10 +1,7 @@
 import type { ISuggestedMeal } from '@/domain/recommendations/types';
 
 export type TV1RecommendationErrorCode =
-	| 'busy'
-	| 'invalid-request'
-	| 'recommendation-failed'
-	| 'request-not-found';
+	'busy' | 'invalid-request' | 'recommendation-failed' | 'request-not-found';
 
 export function serializeV1RecommendationResult(
 	requestId: string,

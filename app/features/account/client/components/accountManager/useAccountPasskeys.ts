@@ -164,8 +164,7 @@ export function useAccountPasskeys({
 
 			// eslint-disable-next-line compat/compat
 			const publicKeyCredential = globalThis.PublicKeyCredential as
-				| PublicKeyCredentialConstructor
-				| undefined;
+				PublicKeyCredentialConstructor | undefined;
 			if (publicKeyCredential === undefined) {
 				return;
 			}

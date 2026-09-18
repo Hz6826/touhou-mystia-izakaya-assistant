@@ -57,8 +57,7 @@ type TCrossTabFallbackLockOwnership =
 
 function getCrossTabLockManager() {
 	const navigatorValue = Reflect.get(globalThis, 'navigator') as
-		| { locks?: ICrossTabLockManager }
-		| undefined;
+		{ locks?: ICrossTabLockManager } | undefined;
 
 	return navigatorValue?.locks ?? null;
 }

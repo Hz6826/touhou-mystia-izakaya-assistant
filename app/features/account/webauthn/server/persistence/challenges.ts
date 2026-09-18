@@ -17,9 +17,7 @@ const WEBAUTHN_CHALLENGE_CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
 let lastWebauthnChallengeCleanupAt = 0;
 
 export type TWebauthnChallengePurpose =
-	| 'account_registration'
-	| 'authentication'
-	| 'registration';
+	'account_registration' | 'authentication' | 'registration';
 
 export async function deleteExpiredChallenges(now = Date.now()) {
 	const db = await getAccountDatabase();

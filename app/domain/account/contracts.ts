@@ -63,6 +63,4 @@ export type TSsoGrantEvent =
 export type TSsoActorType = 'admin' | 'client' | 'system' | 'user';
 
 export type TSsoCallbackDeliveryStatus =
-	| 'failed'
-	| 'final_failed'
-	| 'succeeded';
+	'failed' | 'final_failed' | 'succeeded';

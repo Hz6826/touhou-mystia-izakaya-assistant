@@ -1,8 +1,7 @@
 import type { IAdminAuditLogListData } from '@/features/account/contracts';
 
 export type TActorTypeFilter =
-	| ''
-	| IAdminAuditLogListData['logs'][number]['actor_type'];
+	'' | IAdminAuditLogListData['logs'][number]['actor_type'];
 
 export type TScopeFilter = '' | 'account' | 'sso';
 

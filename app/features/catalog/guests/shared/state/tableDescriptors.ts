@@ -20,10 +20,7 @@ export type TBeverageTableSortKey = 'beverage' | 'price' | 'suitability';
 export type TFoodTableSortKey = 'food' | 'price' | 'suitability' | 'time';
 
 export type TBeverageTableColumnKey =
-	| 'action'
-	| 'beverage'
-	| 'price'
-	| 'suitability';
+	'action' | 'beverage' | 'price' | 'suitability';
 
 export type TFoodTableColumnKey =
 	| 'action'

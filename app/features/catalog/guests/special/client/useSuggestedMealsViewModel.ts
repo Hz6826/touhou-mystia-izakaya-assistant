@@ -65,11 +65,7 @@ import { specialGuestStore } from './state/store';
 type TSuggestions = Awaited<ReturnType<typeof suggestMeals>> | null;
 type TSuggestedMeal = NonNullable<TSuggestions>[number];
 type TSuggestionStatus =
-	| 'error'
-	| 'idle'
-	| 'pending'
-	| 'refreshing'
-	| 'success';
+	'error' | 'idle' | 'pending' | 'refreshing' | 'success';
 type TAlternativesStatus = 'error' | 'idle' | 'pending' | 'success';
 
 const EMPTY_ALTERNATIVES: IIngredientView[] = [];

@@ -9,8 +9,7 @@ import { getLogSafeErrorCode } from '@/infrastructure/logging/errorCode';
 export const FEATURE_DISABLED_MESSAGE = 'feature-disabled';
 
 export type TAccountFeatureDisabledReason =
-	| typeof FEATURE_DISABLED_MESSAGE
-	| typeof SERVER_MISCONFIGURED_MESSAGE;
+	typeof FEATURE_DISABLED_MESSAGE | typeof SERVER_MISCONFIGURED_MESSAGE;
 
 export type IAccountFeatureStatus =
 	| { enabled: true; reason: null }

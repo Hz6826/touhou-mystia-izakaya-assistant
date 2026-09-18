@@ -17,7 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			({ href }) =>
 				!['/admin', '/api', '/preferences', '/sso'].includes(href)
 		)
-		.map<
-			MetadataRoute.Sitemap[number]
-		>(({ href }) => ({ changeFrequency: 'monthly', lastModified: new Date(), priority: 1, url: `https://${baseURL}${href === '/' ? '' : href}` }));
+		.map<MetadataRoute.Sitemap[number]>(({ href }) => ({
+			changeFrequency: 'monthly',
+			lastModified: new Date(),
+			priority: 1,
+			url: `https://${baseURL}${href === '/' ? '' : href}`,
+		}));
 }

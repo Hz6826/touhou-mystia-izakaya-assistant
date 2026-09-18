@@ -94,9 +94,7 @@ interface ILegacySpecialGuestPlansSnapshot<TPlan> extends Record<
 }
 
 type TSpecialGuestPlanSchema =
-	| ILegacySpecialGuestPlanV1
-	| ILegacySpecialGuestPlanV2
-	| ISpecialGuestPlan;
+	ILegacySpecialGuestPlanV1 | ILegacySpecialGuestPlanV2 | ISpecialGuestPlan;
 
 function checkExactKeys(
 	value: Record<string, unknown>,

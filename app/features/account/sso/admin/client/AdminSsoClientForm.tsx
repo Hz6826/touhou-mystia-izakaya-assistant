@@ -162,10 +162,7 @@ function checkClientBodyMatchesClient(
 }
 
 type TConfirmAction =
-	| 'delete-client'
-	| 'toggle-client'
-	| `revoke-secret:${string}`
-	| null;
+	'delete-client' | 'toggle-client' | `revoke-secret:${string}` | null;
 
 function createSecretDisplayName(secret: IAdminSsoClientSecretRecord) {
 	return (

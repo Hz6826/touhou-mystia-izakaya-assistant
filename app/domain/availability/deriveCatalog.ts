@@ -62,8 +62,7 @@ interface IFoodAvailabilityItem {
 }
 
 let currencyItemAvailabilityResultMap:
-	| ReadonlyMap<TCurrencyItemId, IAvailabilityResult>
-	| undefined;
+	ReadonlyMap<TCurrencyItemId, IAvailabilityResult> | undefined;
 
 function compareStrings(left: string, right: string) {
 	if (left < right) {

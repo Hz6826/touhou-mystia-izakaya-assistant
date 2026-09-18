@@ -18,16 +18,9 @@ import { checkIsRecord } from '@/shared/utilities/objects/checkIsRecord';
 import { checkAccountSyncResetWriteAllowed } from './resetGeneration';
 
 export type TAccountSyncConflictResolution =
-	| 'cloud'
-	| `collision:${string}`
-	| 'local'
-	| 'merged';
+	'cloud' | `collision:${string}` | 'local' | 'merged';
 export type TAccountSyncConflictResolutionJournalStage =
-	| 'committed'
-	| 'prepared'
-	| 'runtime'
-	| 'snapshot'
-	| 'state';
+	'committed' | 'prepared' | 'runtime' | 'snapshot' | 'state';
 
 export interface IAccountSyncConflictResolutionJournal {
 	clientMutationId: string;
@@ -64,9 +57,7 @@ export type TAccountSyncConflictResolutionJournalReadResult =
 	TParsedAccountSyncConflictResolutionJournalResult & { raw: string };
 
 export type TAccountSyncConflictResolutionJournalRemovalResult =
-	| 'removed'
-	| 'stale'
-	| 'storage-unavailable';
+	'removed' | 'stale' | 'storage-unavailable';
 
 type TAccountSyncConflictResolutionQueueObservation =
 	| {
@@ -91,10 +82,7 @@ type TAccountSyncConflictResolutionQueueObservation =
 	| { kind: 'none' };
 
 export type TAccountSyncConflictResolutionRecoveryAction =
-	| 'accept-committed'
-	| 'finalize-selection'
-	| 'isolate'
-	| 'resume-conflict';
+	'accept-committed' | 'finalize-selection' | 'isolate' | 'resume-conflict';
 
 const JOURNAL_VERSION = 2;
 const MAX_JOURNAL_STRING_LENGTH = 256;

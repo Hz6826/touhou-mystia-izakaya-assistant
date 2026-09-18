@@ -8,8 +8,7 @@ export type TPinyinSortState =
 	(typeof PINYIN_SORT_STATE_MAP)[keyof typeof PINYIN_SORT_STATE_MAP];
 
 type TPinyinSortStateUpdate =
-	| TPinyinSortState
-	| ((previousState: TPinyinSortState) => TPinyinSortState);
+	TPinyinSortState | ((previousState: TPinyinSortState) => TPinyinSortState);
 
 export interface IPinyinSortConfig {
 	pinyinSortState: TPinyinSortState;

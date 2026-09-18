@@ -12,7 +12,7 @@ import { useSkipProcessItemData } from './useSkipProcessItemData';
 
 export function useFilteredData<
 	T extends TItemInstance | TItemData<TItemInstance>,
-	U extends T extends TItemInstance ? TItemData<T> : T,
+	U extends (T extends TItemInstance ? TItemData<T> : T),
 >(instanceOrData: T, filterData: () => U) {
 	const shouldSkipProcessData = useSkipProcessItemData();
 

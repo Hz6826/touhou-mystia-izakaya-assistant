@@ -21,9 +21,7 @@ import {
 const ADMIN_SSO_TICKET_CLEANUP_RETENTION_MS = 60 * 1000;
 
 export type TAdminSsoTicketServiceError =
-	| 'invalid-object-structure'
-	| 'sso-client-not-found'
-	| 'user-not-found';
+	'invalid-object-structure' | 'sso-client-not-found' | 'user-not-found';
 
 export type TAdminSsoTicketServiceResult<TData> =
 	| { data: TData; status: 'ok' }

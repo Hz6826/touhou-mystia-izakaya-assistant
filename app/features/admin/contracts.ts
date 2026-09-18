@@ -32,10 +32,7 @@ export type TAdminUserDetailApiResult<TData = Record<string, unknown>> =
 	| Extract<TAdminApiResult, { status: 'error' }>;
 
 export type TAdminAuthStatus =
-	| 'authenticated'
-	| 'checking'
-	| 'error'
-	| 'unauthenticated';
+	'authenticated' | 'checking' | 'error' | 'unauthenticated';
 
 export interface IAdminPageInitialData {
 	admin: IAdminMeData | null;

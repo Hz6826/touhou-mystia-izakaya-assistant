@@ -21,11 +21,7 @@ import type { TOverlayId } from '@/features/overlays/contracts';
 import { createPersistMiddleware } from '@/infrastructure/browser/storage/createPersistMiddleware';
 
 export type TAccountBootstrapStatus =
-	| 'anonymous'
-	| 'disabled'
-	| 'error'
-	| 'loggedIn'
-	| 'unknown';
+	'anonymous' | 'disabled' | 'error' | 'loggedIn' | 'unknown';
 
 export type TAccountSyncResult = 'failed' | 'idle' | 'partial' | 'success';
 

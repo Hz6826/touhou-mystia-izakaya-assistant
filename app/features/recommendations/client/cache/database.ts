@@ -40,8 +40,7 @@ type TRecommendationCacheWriteTransaction = IDBPTransaction<
 const LEGACY_SPECIAL_GUEST_PLAN_RESULT_STORE_NAME = 'customerRarePlanResults';
 
 let databasePromise:
-	| Promise<IDBPDatabase<IRecommendationCacheDatabase> | undefined>
-	| undefined;
+	Promise<IDBPDatabase<IRecommendationCacheDatabase> | undefined> | undefined;
 let openedDatabase: IDBPDatabase<IRecommendationCacheDatabase> | undefined;
 let isCacheDisabled = false;
 let isWriteDisabled = false;

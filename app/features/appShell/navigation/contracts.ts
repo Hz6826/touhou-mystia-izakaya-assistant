@@ -9,5 +9,4 @@ export type TSpriteNavigationItem<T extends string = string> = {
 }[TSpriteTarget];
 
 export type TNavItem<T extends string = string> =
-	| ILink<T>
-	| Record<string, Array<TSpriteNavigationItem<T>>>;
+	ILink<T> | Record<string, Array<TSpriteNavigationItem<T>>>;

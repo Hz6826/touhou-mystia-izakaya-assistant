@@ -50,8 +50,7 @@ import { ACCOUNT_MANAGER_MESSAGE_MAP } from './copy';
 
 const LOGOUT_SKIPPED = Symbol('logout-skipped');
 type TLogoutAfterFlushResult =
-	| TAccountApiResult<unknown>
-	| typeof LOGOUT_SKIPPED;
+	TAccountApiResult<unknown> | typeof LOGOUT_SKIPPED;
 
 interface IUseAccountDestructiveActionsOptions {
 	controller: IAccountActionController;

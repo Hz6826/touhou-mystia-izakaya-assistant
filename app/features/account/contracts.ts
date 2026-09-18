@@ -53,8 +53,7 @@ export interface IAccountMeAnonymousResponse {
 }
 
 export type TAccountMeResponse =
-	| IAccountMeAnonymousResponse
-	| IAccountMeSuccessResponse;
+	IAccountMeAnonymousResponse | IAccountMeSuccessResponse;
 
 export type TAccountFeatureViewer =
 	| { isAuthenticated: false }
@@ -374,9 +373,7 @@ export interface IAdminAuditLogListData {
 export type TAdminSsoCallbackEvent = TAccountSsoCallbackEvent;
 
 export type TAdminSsoCallbackQueueStatus =
-	| 'final_failed'
-	| 'pending'
-	| 'retrying';
+	'final_failed' | 'pending' | 'retrying';
 
 export interface IAdminSsoCallbackQueueRecord {
 	attempts: number;

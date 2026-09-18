@@ -71,14 +71,12 @@ export function parseSyncStatePutBody(
 				status: 'update-required',
 			};
 		}
-		if (
-			!(
-				'data' in change &&
-				'namespace' in change &&
-				'revision' in change &&
-				'schema_version' in change
-			)
-		) {
+		if (!(
+			'data' in change &&
+			'namespace' in change &&
+			'revision' in change &&
+			'schema_version' in change
+		)) {
 			return { status: 'invalid-structure' };
 		}
 

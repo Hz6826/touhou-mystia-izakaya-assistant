@@ -105,10 +105,7 @@ import { trackEvent } from '@/features/analytics/client/trackEvent';
 type TCallbackEventFilter = '' | TAdminSsoCallbackEvent;
 type TCallbackQueueStatusFilter = '' | TAdminSsoCallbackQueueStatus;
 type TConfirmAction =
-	| 'dispatch'
-	| `discard:${number}`
-	| `retry:${number}`
-	| null;
+	'dispatch' | `discard:${number}` | `retry:${number}` | null;
 
 const pageInputRegexp = /^\d*$/u;
 

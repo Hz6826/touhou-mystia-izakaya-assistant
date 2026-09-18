@@ -16,8 +16,7 @@ type TGuestFilterState =
 	TGuestRouteStore['persistence']['guest']['filters']['excludes'];
 
 type TGuestData =
-	| TItemData<NormalGuestCatalog>
-	| TItemData<SpecialGuestCatalog>;
+	TItemData<NormalGuestCatalog> | TItemData<SpecialGuestCatalog>;
 type TGuestRouteItem =
 	| TItemData<NormalGuestCatalog>[number]
 	| TItemData<SpecialGuestCatalog>[number];

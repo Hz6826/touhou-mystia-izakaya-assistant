@@ -28,8 +28,7 @@ interface ILegacyNameWithoutHistoricalOwner {
 }
 
 export type TLegacyNameOwnerDeclaration =
-	| ILegacyNameHistoricalOwner
-	| ILegacyNameWithoutHistoricalOwner;
+	ILegacyNameHistoricalOwner | ILegacyNameWithoutHistoricalOwner;
 
 /**
  * Sparse declarations only for current same-category duplicate-name groups.

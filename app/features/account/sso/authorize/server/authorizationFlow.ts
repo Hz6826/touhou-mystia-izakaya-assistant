@@ -31,9 +31,7 @@ export type TSsoAuthorizationPrepareResult =
 	  }
 	| {
 			error:
-				| 'client-disabled'
-				| 'feature-disabled'
-				| 'invalid-redirect-uri';
+				'client-disabled' | 'feature-disabled' | 'invalid-redirect-uri';
 			status: 'error';
 	  };
 

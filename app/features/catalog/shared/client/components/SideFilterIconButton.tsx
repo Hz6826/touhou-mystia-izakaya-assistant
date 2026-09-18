@@ -83,9 +83,7 @@ interface IRecordSelectConfigItem extends ISelectConfigItemBase {
 }
 
 type ISelectConfigItem =
-	| INumberSelectConfigItem
-	| IRecordSelectConfigItem
-	| IStringSelectConfigItem;
+	INumberSelectConfigItem | IRecordSelectConfigItem | IStringSelectConfigItem;
 
 const NUMERIC_SELECT_VALUE_TYPES: ReadonlyArray<string> = [
 	'beverageTag',

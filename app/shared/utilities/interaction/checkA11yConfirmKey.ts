@@ -4,10 +4,7 @@ import {
 } from 'react';
 
 export type TPressEvent<T = Element> =
-	| ReactKeyboardEvent<T>
-	| ReactMouseEvent<T>
-	| KeyboardEvent
-	| MouseEvent;
+	ReactKeyboardEvent<T> | ReactMouseEvent<T> | KeyboardEvent | MouseEvent;
 
 function checkEvent(event: TPressEvent) {
 	const { type } = event;

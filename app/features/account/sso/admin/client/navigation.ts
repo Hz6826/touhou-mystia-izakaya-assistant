@@ -6,9 +6,7 @@ import {
 
 export type TAdminSsoClientStatusLocationFilter = '' | 'active' | 'disabled';
 export type TAdminSsoCallbackConfigLocationFilter =
-	| ''
-	| 'configured'
-	| 'missing';
+	'' | 'configured' | 'missing';
 export type TAdminSsoGrantPresenceLocationFilter = '' | 'has' | 'none';
 
 export interface IAdminSsoLocationState extends IAdminLocationState {

@@ -54,9 +54,7 @@ type TImportLegacyBackupSimpleError =
 	| 'unauthorized';
 
 type TImportLegacyBackupStateError =
-	| 'state-epoch-mismatch'
-	| 'sync-generation-mismatch'
-	| 'sync-paused';
+	'state-epoch-mismatch' | 'sync-generation-mismatch' | 'sync-paused';
 
 export type TImportLegacyBackupUseCaseResult =
 	| {

@@ -76,13 +76,7 @@ export type TError = 'Cloud' | 'Global' | 'SSO' | 'Update';
 export type TShow = 'Modal' | 'Popover' | 'Tooltip';
 
 export type TTrackAction =
-	| TActions
-	| TAdminSelect
-	| TError
-	| TItem
-	| TItemAlone
-	| TItemCard
-	| TShow;
+	TActions | TAdminSelect | TError | TItem | TItemAlone | TItemCard | TShow;
 
 export interface IAnalyticsTracker {
 	ping(): void;

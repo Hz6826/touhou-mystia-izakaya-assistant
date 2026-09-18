@@ -42,8 +42,7 @@ function trackEventFunction(
 ): void;
 function trackEventFunction(
 	category:
-		| typeof TRACK_CATEGORY_MAP.select
-		| typeof TRACK_CATEGORY_MAP.unselect,
+		typeof TRACK_CATEGORY_MAP.select | typeof TRACK_CATEGORY_MAP.unselect,
 	action: TAdminSelect | TItem | TItemAlone,
 	name: string,
 	value?: number | string

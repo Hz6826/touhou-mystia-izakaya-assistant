@@ -32,9 +32,8 @@ type TNestedKeys<T> = T extends TPlainObject
 type TNestedType<T, P> = P extends [infer Head, ...infer Tail]
 	? Head extends keyof T
 		? Tail extends string[]
-			?
-					| TNestedType<NonNullable<T[Head]>, Tail>
-					| (T[Head] extends undefined ? undefined : never)
+			? | TNestedType<NonNullable<T[Head]>, Tail>
+				| (T[Head] extends undefined ? undefined : never)
 			: never
 		: undefined
 	: T;

@@ -42,11 +42,7 @@ const RECENT_REQUEST_ID_LIMIT = 256;
 const MAX_PROTOCOL_ERRORS = 3;
 
 type TBridgeState =
-	| 'connecting'
-	| 'ready'
-	| 'reconnecting'
-	| 'stopped'
-	| 'waiting-login';
+	'connecting' | 'ready' | 'reconnecting' | 'stopped' | 'waiting-login';
 type TTaskStatus = 'cancelling' | 'running';
 
 interface IBridgeTask {
