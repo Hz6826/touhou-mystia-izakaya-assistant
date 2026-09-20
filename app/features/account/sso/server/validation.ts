@@ -184,7 +184,7 @@ export function checkSsoRedirectUriFormat(value: string) {
 	}
 	if (url.protocol === 'http:') {
 		return (
-			['127.0.0.1', '[::1]', '::1'].includes(url.hostname) &&
+			['localhost', '127.0.0.1', '[::1]', '::1'].includes(url.hostname) &&
 			url.username === '' &&
 			url.password === '' &&
 			url.hash === '' &&

@@ -460,12 +460,10 @@ http://[::1]:{port}/callback
 限制：
 
 - scheme 必须为 `http`。
-- host 只能是 `127.0.0.1`、`[::1]` 或 `::1`。
+- host 只能是 `localhost`、`127.0.0.1`、`[::1]` 或 `::1`。
 - path 必须在 client 配置白名单内。
 - port 可由客户端动态选择。
 - 不允许普通公网 `http://` redirect URI。
-
-> 实现注意：Next.js 的 `NextURL` 会把整条 URL 字符串里的 `127.0.0.1` 归一化成 `localhost`（query 取值也会被改写），曾导致 `http://127.0.0.1:{port}/…` 这类合法回环地址被判非法并返回 `invalid-object-structure`。修复放在框架层（`patches/next.patch`），没有放宽白名单，详见 [21-loopback回调host归一化修复.plan.md](21-loopback回调host归一化修复.plan.md)。
 
 本地客户端应临时启动 loopback HTTP server，收到回调后立即关闭。
 

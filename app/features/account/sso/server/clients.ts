@@ -328,9 +328,12 @@ export function validateSsoRedirectUri(
 
 	const url = new URL(redirectUri);
 	if (url.protocol === 'http:') {
-		const isLoopbackHost = ['127.0.0.1', '[::1]', '::1'].includes(
-			url.hostname
-		);
+		const isLoopbackHost = [
+			'localhost',
+			'127.0.0.1',
+			'[::1]',
+			'::1',
+		].includes(url.hostname);
 
 		return (
 			isLoopbackHost &&
