@@ -104,21 +104,21 @@ loopback 和 custom scheme 客户端属于 public client：同一台机器上的
 | `custom_scheme_redirect_uris` | 允许的自定义协议回调 URI 列表，例如 `mystia-game://sso/callback`。                                                                                                                         |
 | `https_redirect_uris`         | 允许的外部网站 HTTPS 登录回调 URI 列表，例如 `https://game.example.com/sso/callback`。                                                                                                     |
 | `status_callback_url`         | 可选，授权撤销、用户状态、用户资料、client 状态或 secret 变化时夜雀助手主动通知外部服务的 HTTPS URL。URL 不得包含用户名、密码或 fragment；生产中可以按自托管网络拓扑解析到同机或内网服务。 |
-| `cancel_redirect_uri`         | 可选，用户取消授权后跳转的地址。                                                                                                                                                           |
+| `cancel_redirect_uri`         | 可选，用户取消授权后跳转的地址。留空时，用户取消会回调本次 `redirect_uri` 并携带 `error=access_denied` 与原始 `state`；桌面 loopback 客户端因此无需固定端口。                              |
 
 管理员也可以在后台禁用或重新启用某个 SSO client。禁用不会删除配置、secret hash 或历史授权记录，但会暂停该 client 的授权、换票和状态查询；禁用动作本身会尽量投递 `client_disabled` callback，让外部服务暂停入口或新会话。外部服务会在公开接口中收到 `client-disabled`。
 
 外部服务接入方应在创建 SSO client 前，向夜雀助手管理员提供以下配置单：
 
-| 提供项              | 必填     | 管理员配置字段                | 说明                                                                                                                                                 |
-| ------------------- | -------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 服务展示名称        | 是       | `name`                        | 授权确认页展示给用户看的名称，应能让用户识别正在授权给哪个服务。                                                                                     |
-| 稳定 client ID      | 是       | `id`                          | 建议使用服务级稳定 ID，例如 `mystia-online-client`；创建后不应频繁变更。                                                                             |
-| loopback 回调 path  | 条件必填 | `loopback_redirect_paths`     | 使用本地 HTTP 回调时提供 path 列表，只填 path，不填 host 和 port，例如 `/sso/callback`。动态端口由客户端运行时选择。                                 |
-| 自定义协议回调 URI  | 条件必填 | `custom_scheme_redirect_uris` | 使用 custom scheme 时提供完整 URI，例如 `mystia-online://sso/callback`。必须精确匹配。                                                               |
-| 网站 HTTPS 回调 URI | 条件必填 | `https_redirect_uris`         | 外部网站统一登录时提供完整 HTTPS URI，例如 `https://game.example.com/auth/mystia/callback`。必须精确匹配。                                           |
-| 状态回调 URL        | 推荐     | `status_callback_url`         | 外部服务后端接收授权撤销、用户状态、用户资料、client 状态和 secret 变化事件的 HTTPS URL，例如 `https://api.example.com/mystia/sso/status-callback`。 |
-| 取消授权跳转 URI    | 可选     | `cancel_redirect_uri`         | 用户点取消后的跳转地址。必须是合法 SSO redirect URI；如果桌面客户端使用动态 loopback 且没有稳定取消 URI，可以留空。                                  |
+| 提供项              | 必填     | 管理员配置字段                | 说明                                                                                                                                                                                 |
+| ------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 服务展示名称        | 是       | `name`                        | 授权确认页展示给用户看的名称，应能让用户识别正在授权给哪个服务。                                                                                                                     |
+| 稳定 client ID      | 是       | `id`                          | 建议使用服务级稳定 ID，例如 `mystia-online-client`；创建后不应频繁变更。                                                                                                             |
+| loopback 回调 path  | 条件必填 | `loopback_redirect_paths`     | 使用本地 HTTP 回调时提供 path 列表，只填 path，不填 host 和 port，例如 `/sso/callback`。动态端口由客户端运行时选择。                                                                 |
+| 自定义协议回调 URI  | 条件必填 | `custom_scheme_redirect_uris` | 使用 custom scheme 时提供完整 URI，例如 `mystia-online://sso/callback`。必须精确匹配。                                                                                               |
+| 网站 HTTPS 回调 URI | 条件必填 | `https_redirect_uris`         | 外部网站统一登录时提供完整 HTTPS URI，例如 `https://game.example.com/auth/mystia/callback`。必须精确匹配。                                                                           |
+| 状态回调 URL        | 推荐     | `status_callback_url`         | 外部服务后端接收授权撤销、用户状态、用户资料、client 状态和 secret 变化事件的 HTTPS URL，例如 `https://api.example.com/mystia/sso/status-callback`。                                 |
+| 取消授权跳转 URI    | 可选     | `cancel_redirect_uri`         | 用户点取消后的跳转地址。必须是合法 SSO redirect URI；留空时取消会回调本次 `redirect_uri` 并携带 `error=access_denied` 与原始 `state`，因此使用动态 loopback 端口的桌面客户端应留空。 |
 
 `loopback_redirect_paths`、`custom_scheme_redirect_uris` 和 `https_redirect_uris` 至少需要提供一种，否则 client 配置无效。三者可以同时配置在同一个 client 中：例如同一个“夜雀联机服务”既有网页登录页，又有桌面启动器，就可以共用同一个 `client_id` 和 `client_secret`，分别把网站 HTTPS callback、本地 loopback path 和 custom scheme URI 加入白名单。
 
@@ -327,7 +327,7 @@ Query 参数：
 - 若用户未登录，夜雀助手会引导登录或注册，登录完成后继续授权流程。
 - 若用户已登录，夜雀助手展示授权确认页。
 - 用户同意后，夜雀助手生成一次性 ticket，并重定向到 `redirect_uri`。
-- 用户取消时，夜雀助手跳转到 client 配置的 `cancel_redirect_uri`；未配置时展示取消状态页。
+- 用户取消时，夜雀助手按优先级回跳：client 配置了合法的 `cancel_redirect_uri` 时跳转该地址；否则回调本次 `redirect_uri` 并携带 `error=access_denied` 与原始 `state`；两者都不可用时展示取消状态页。客户端应把 `error=access_denied` 视为用户主动取消，结束本地等待而不是重试。
 
 成功回调示例：
 
@@ -799,22 +799,23 @@ CREATE TABLE external_users (
 3. 外部网站或本地客户端发起 authorize，确认未登录时会进入登录流程。
 4. 登录后确认授权页展示正确 client name。
 5. 点击同意，确认回调包含 `ticket` 和原始 `state`。
-6. 外部网站接入时，确认 HTTPS callback 能校验 `state` 并读取 `ticket`。
-7. 外部后端调用 validate，确认返回用户 `id`、`username`、`nickname`、`status`；`nickname` 仅用于展示，账号绑定仍使用 `id`。
-8. 重复使用同一 ticket，确认返回 `invalid-ticket`。
-9. 使用错误 `code_verifier`，确认返回 `invalid-ticket`。
-10. 使用错误 `client_secret`，确认返回 `invalid-client`。
-11. 管理员禁用 SSO client，确认 authorize、validate 或 status 返回 `client-disabled`；重新启用后再继续后续联调。
-12. 外部服务签发自己的业务 token，并确认后续业务 API 不再依赖夜雀助手 Cookie。
-13. 配置 `status_callback_url`，禁用或删除测试用户，确认外部服务收到 `user_disabled` / `user_deleted` 并验签回调。
-14. 普通用户自助撤销或管理员撤销授权，确认外部服务收到 `grant_revoked`，并按 `user_id` 清理本 client 下的业务 token。
-15. 普通用户修改用户名或昵称，确认外部服务收到 `user_profile_updated`，按 `user_id` 更新展示缓存且不撤销 token。
-16. 管理员禁用 SSO client，确认外部服务收到 `client_disabled`，公开 authorize、validate 或 status 返回 `client-disabled`。
-17. 管理员软删除 SSO client，确认外部服务收到 `client_deleted`，公开协议不可再使用该 client。
-18. 创建、启用/禁用或撤销 secret，确认外部服务收到 `secret_rotated`，并完成新旧 secret 轮换窗口验证。
-19. 检查 client 级 callback 的 `user_id` 为 `null`，`metadata` 只包含安全字段，callback 队列和投递历史能展示该 metadata。
-20. 外部服务调用 status，确认 active 且仍有授权的用户返回 ok；用户不存在、已撤销授权或从未授权返回 404 `user-not-found`。
-21. 外部服务调用 status，确认用户被禁用或删除返回 403 `user-disabled` / `user-deleted`。
+6. 点击取消，确认未配置 `cancel_redirect_uri` 时回调本次 `redirect_uri` 并携带 `error=access_denied` 与原始 `state`，且不产生 ticket。
+7. 外部网站接入时，确认 HTTPS callback 能校验 `state` 并读取 `ticket`。
+8. 外部后端调用 validate，确认返回用户 `id`、`username`、`nickname`、`status`；`nickname` 仅用于展示，账号绑定仍使用 `id`。
+9. 重复使用同一 ticket，确认返回 `invalid-ticket`。
+10. 使用错误 `code_verifier`，确认返回 `invalid-ticket`。
+11. 使用错误 `client_secret`，确认返回 `invalid-client`。
+12. 管理员禁用 SSO client，确认 authorize、validate 或 status 返回 `client-disabled`；重新启用后再继续后续联调。
+13. 外部服务签发自己的业务 token，并确认后续业务 API 不再依赖夜雀助手 Cookie。
+14. 配置 `status_callback_url`，禁用或删除测试用户，确认外部服务收到 `user_disabled` / `user_deleted` 并验签回调。
+15. 普通用户自助撤销或管理员撤销授权，确认外部服务收到 `grant_revoked`，并按 `user_id` 清理本 client 下的业务 token。
+16. 普通用户修改用户名或昵称，确认外部服务收到 `user_profile_updated`，按 `user_id` 更新展示缓存且不撤销 token。
+17. 管理员禁用 SSO client，确认外部服务收到 `client_disabled`，公开 authorize、validate 或 status 返回 `client-disabled`。
+18. 管理员软删除 SSO client，确认外部服务收到 `client_deleted`，公开协议不可再使用该 client。
+19. 创建、启用/禁用或撤销 secret，确认外部服务收到 `secret_rotated`，并完成新旧 secret 轮换窗口验证。
+20. 检查 client 级 callback 的 `user_id` 为 `null`，`metadata` 只包含安全字段，callback 队列和投递历史能展示该 metadata。
+21. 外部服务调用 status，确认 active 且仍有授权的用户返回 ok；用户不存在、已撤销授权或从未授权返回 404 `user-not-found`。
+22. 外部服务调用 status，确认用户被禁用或删除返回 403 `user-disabled` / `user-deleted`。
 
 ## 十七、最小接入示例
 

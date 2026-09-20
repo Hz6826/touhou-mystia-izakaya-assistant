@@ -13,3 +13,7 @@ export const SSO_AUTHORIZE_PAGE_STATUS_MAP = {
 	expired: 'expired',
 	invalid: 'invalid',
 } as const;
+
+export const SSO_AUTHORIZE_REDIRECT_ERROR_MAP = {
+	accessDenied: 'access_denied',
+} as const;

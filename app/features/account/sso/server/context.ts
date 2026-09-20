@@ -8,6 +8,7 @@ import {
 	createAccountHmac,
 } from '@/features/account/server/auth/crypto';
 import { createAccountCookieDomainOptions } from '@/features/account/server/auth/session';
+import { SSO_AUTHORIZE_REDIRECT_ERROR_MAP } from '@/features/account/sso/apiResponseCodes';
 
 import { checkIsRecord } from '@/shared/utilities/objects/checkIsRecord';
 
@@ -186,6 +187,17 @@ export function clearSsoContextCookie(
 		...getSsoContextCookieOptions(request),
 		maxAge: 0,
 	});
+}
+
+export function createSsoCancelRedirectUrl(redirectUri: string, state: string) {
+	const url = new URL(redirectUri);
+	url.searchParams.set(
+		'error',
+		SSO_AUTHORIZE_REDIRECT_ERROR_MAP.accessDenied
+	);
+	url.searchParams.set('state', state);
+
+	return url.toString();
 }
 
 export function createSsoRedirectUrl(

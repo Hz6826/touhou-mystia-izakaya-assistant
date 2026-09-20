@@ -5,6 +5,7 @@ import { USER_STATUS_MAP } from '@/domain/account/contracts';
 import { type TAccountAuthResult } from '@/features/account/server/auth/requestAuthentication';
 import {
 	type ISsoContext,
+	createSsoCancelRedirectUrl,
 	createSsoContextTransactionId,
 	createSsoRedirectUrl,
 	getSsoContextCookie,
@@ -204,16 +205,32 @@ async function submitSsoAuthorizationCancel(
 		const client = await ssoClientModule.getSsoClientById(
 			context.client_id
 		);
-		if (
-			client?.cancel_redirect_uri !== undefined &&
-			client.cancel_redirect_uri !== null &&
-			checkSsoRedirectUriFormat(client.cancel_redirect_uri)
-		) {
-			return {
-				clearContext: true,
-				redirectUrl: client.cancel_redirect_uri,
-				status: 'redirect',
-			};
+		if (client !== null) {
+			if (
+				client.cancel_redirect_uri !== null &&
+				checkSsoRedirectUriFormat(client.cancel_redirect_uri)
+			) {
+				return {
+					clearContext: true,
+					redirectUrl: client.cancel_redirect_uri,
+					status: 'redirect',
+				};
+			}
+			if (
+				ssoClientModule.validateSsoRedirectUri(
+					client,
+					context.redirect_uri
+				)
+			) {
+				return {
+					clearContext: true,
+					redirectUrl: createSsoCancelRedirectUrl(
+						context.redirect_uri,
+						context.state
+					),
+					status: 'redirect',
+				};
+			}
 		}
 	} catch (error) {
 		console.warn('SSO authorize cancellation failed.', {
