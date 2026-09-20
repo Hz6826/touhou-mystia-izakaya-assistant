@@ -88,6 +88,8 @@ isProject: false
 
 loopback 和 custom scheme 客户端属于 public client：同一台机器上的其它进程理论上也可能监听相同 path、注册相同 scheme 或抢先接收回调。外部服务不得把“客户端收到了 ticket”当作客户端可信证明；后端必须用自己的登录事务 state、`code_verifier` 和服务端保存的 `client_secret` 完成校验，且所有业务权限仍以后端签发的外部服务 token 为准。
 
+> 服务端已修复 Next.js 对 loopback 取值的 host 归一化（`127.0.0.1` 曾被框架改写成 `localhost` 而触发 `invalid-object-structure`），外部服务可以直接使用 `http://127.0.0.1:{port}/…` 或 `http://[::1]:{port}/…`，白名单与校验语义未放宽。背景见 [21-loopback回调host归一化修复.plan.md](21-loopback回调host归一化修复.plan.md)。
+
 夜雀助手只在 `validate` 成功时证明小助手账号身份。是否允许进入联机服务器、是否允许上传皮肤、是否需要封禁或限流，均由外部服务自己的数据库和规则决定。
 
 ## 四、管理员配置
